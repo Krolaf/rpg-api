@@ -13,6 +13,13 @@
             <input type="text" name="nom" required>
             <label>Bonus Stat :</label>
             <input type="number" name="bonusStat" required>
+            <label>Type :</label>
+            <select name="type" required>
+                <option value="Elfe">Elfe</option>
+                <option value="Nain">Nain</option>
+                <option value="Orc">Orc</option>
+                <option value="Humain">Humain</option>
+            </select>
             <button type="submit">Créer Race</button>
         </form>
         <ul>
@@ -27,6 +34,12 @@
             <input type="text" name="nom" required>
             <label>Coût :</label>
             <input type="text" name="cout" required>
+            <label>Type :</label>
+            <select name="type" required>
+                <option value="P_Magique">Magique</option>
+                <option value="P_Physique">Physique</option>
+                <option value="P_Energie">Energie</option>
+            </select>
             <button type="submit">Créer Pouvoir</button>
         </form>
         <ul>
@@ -81,30 +94,34 @@
             <label for="race">Race :</label>
             <select id="race" name="raceId" required>
                 <option value="">--Choisir--</option>
-                <option value="1">Elfe</option>
-                <option value="2">Nain</option>
-                <option value="3">Orc</option>
-                <option value="4">Humain</option>
+                <th:block th:each="race : ${races}">
+                    <option th:value="${race.id}" th:text="${race.nom}" />
+                </th:block>
             </select>
 
             <label for="pouvoir">Pouvoir :</label>
             <select id="pouvoir" name="pouvoirId" required>
                 <option value="">--Choisir--</option>
-                <option value="1">Boule de feu</option>
-                <option value="2">Coup puissant</option>
-                <option value="3">Soin magique</option>
+                <th:block th:each="pouvoir : ${pouvoirs}">
+                    <option th:value="${pouvoir.id}" th:text="${pouvoir.nom}" />
+                </th:block>
             </select>
 
             <label for="metier">Métier :</label>
             <select id="metier" name="metierId" required>
                 <option value="">--Choisir--</option>
-                <option value="1">Guerrier</option>
-                <option value="2">Voleur</option>
-                <option value="3">Mage</option>
+                <th:block th:each="metier : ${metiers}">
+                    <option th:value="${metier.id}" th:text="${metier.nom}" />
+                </th:block>
             </select>
 
-            <label for="stats">Stats (IDs séparés par des virgules) :</label>
-            <input type="text" id="stats" name="statsIds" placeholder="1,2,3">
+            <label for="stats">Stats :</label>
+            <select id="stats" name="statsIds" multiple size="5" required>
+                <th:block th:each="stat : ${statsList}">
+                    <option th:value="${stat.id}" th:text="${stat.nom} + ' (Valeur: ' + ${stat.valeur} + ', Bonus: ' + ${stat.bonus} + ')'" />
+                </th:block>
+            </select>
+            <small>Maintenez Ctrl (ou Cmd) pour sélectionner plusieurs stats</small>
 
             <button type="submit">Créer</button>
         </form>

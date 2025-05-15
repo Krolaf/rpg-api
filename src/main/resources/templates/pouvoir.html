@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Pouvoirs</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="container">
+    <h2>Créer un Pouvoir</h2>
+    <form action="/pouvoirs/add" method="post">
+        <label>Nom :</label>
+        <input type="text" name="nom" required>
+        <label>Coût :</label>
+        <input type="text" name="cout" required>
+        <label>Type :</label>
+        <select name="type" required>
+            <option value="P_Magique">Magique</option>
+            <option value="P_Physique">Physique</option>
+            <option value="P_Energie">Energie</option>
+        </select>
+        <button type="submit">Créer Pouvoir</button>
+    </form>
+    <h3>Liste des Pouvoirs</h3>
+    <ul>
+        <th:block th:each="pouvoir : ${pouvoirs}">
+            <li th:text="${pouvoir.nom} + ' (Coût: ' + ${pouvoir.cout} + ', Type: ' + ${pouvoir.class.simpleName} + ') - id: ' + ${pouvoir.id}"></li>
+        </th:block>
+    </ul>
+    <a href="/personnages">Retour Personnages</a>
+</div>
+</body>
+</html>
