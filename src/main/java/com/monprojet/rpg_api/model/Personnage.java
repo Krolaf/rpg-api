@@ -7,9 +7,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.Data;
 
 // Personnage.java
 @Entity
+@Data
 public class Personnage {
     @Id @GeneratedValue
     private Long id;
