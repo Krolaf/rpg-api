@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion RPG</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Créer une Race</h2>
+        <form action="/create-race" method="post">
+            <label>Nom :</label>
+            <input type="text" name="nom" required>
+            <label>Bonus Stat :</label>
+            <input type="number" name="bonusStat" required>
+            <button type="submit">Créer Race</button>
+        </form>
+        <ul>
+            <th:block th:each="race : ${races}">
+                <li th:text="${race.nom} + ' (Bonus: ' + ${race.bonusStat} + ') - id: ' + ${race.id}"></li>
+            </th:block>
+        </ul>
+
+        <h2>Créer un Pouvoir</h2>
+        <form action="/create-pouvoir" method="post">
+            <label>Nom :</label>
+            <input type="text" name="nom" required>
+            <label>Coût :</label>
+            <input type="text" name="cout" required>
+            <button type="submit">Créer Pouvoir</button>
+        </form>
+        <ul>
+            <th:block th:each="pouvoir : ${pouvoirs}">
+                <li th:text="${pouvoir.nom} + ' (Coût: ' + ${pouvoir.cout} + ') - id: ' + ${pouvoir.id}"></li>
+            </th:block>
+        </ul>
+
+        <h2>Créer un Métier</h2>
+        <form action="/create-metier" method="post">
+            <label>Nom :</label>
+            <input type="text" name="nom" required>
+            <label>Légal :</label>
+            <select name="legal">
+                <option value="true">Oui</option>
+                <option value="false">Non</option>
+            </select>
+            <label>Salaire :</label>
+            <input type="number" name="salaire" step="0.01" required>
+            <button type="submit">Créer Métier</button>
+        </form>
+        <ul>
+            <th:block th:each="metier : ${metiers}">
+                <li th:text="${metier.nom} + ' (Légal: ' + ${metier.legal} + ', Salaire: ' + ${metier.salaire} + ') - id: ' + ${metier.id}"></li>
+            </th:block>
+        </ul>
+
+        <h2>Créer une Stat</h2>
+        <form action="/create-stats" method="post">
+            <label>Nom :</label>
+            <input type="text" name="nom" required>
+            <label>Valeur :</label>
+            <input type="number" name="valeur" required>
+            <label>Bonus :</label>
+            <input type="number" name="bonus" required>
+            <button type="submit">Créer Stat</button>
+        </form>
+        <ul>
+            <th:block th:each="stat : ${statsList}">
+                <li th:text="${stat.nom} + ' (Valeur: ' + ${stat.valeur} + ', Bonus: ' + ${stat.bonus} + ') - id: ' + ${stat.id}"></li>
+            </th:block>
+        </ul>
+
+        <h2>Créer une fiche de personnage</h2>
+        <form action="/create-personnage" method="post">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="age">Âge :</label>
+            <input type="number" id="age" name="age" min="1" required>
+
+            <label for="race">Race :</label>
+            <select id="race" name="raceId" required>
+                <option value="">--Choisir--</option>
+                <option value="1">Elfe</option>
+                <option value="2">Nain</option>
+                <option value="3">Orc</option>
+                <option value="4">Humain</option>
+            </select>
+
+            <label for="pouvoir">Pouvoir :</label>
+            <select id="pouvoir" name="pouvoirId" required>
+                <option value="">--Choisir--</option>
+                <option value="1">Boule de feu</option>
+                <option value="2">Coup puissant</option>
+                <option value="3">Soin magique</option>
+            </select>
+
+            <label for="metier">Métier :</label>
+            <select id="metier" name="metierId" required>
+                <option value="">--Choisir--</option>
+                <option value="1">Guerrier</option>
+                <option value="2">Voleur</option>
+                <option value="3">Mage</option>
+            </select>
+
+            <label for="stats">Stats (IDs séparés par des virgules) :</label>
+            <input type="text" id="stats" name="statsIds" placeholder="1,2,3">
+
+            <button type="submit">Créer</button>
+        </form>
+
+        <h2>Liste des Personnages</h2>
+        <ul>
+            <th:block th:each="perso : ${personnages}">
+                <li th:text="${perso.nom} + ' (Age: ' + ${perso.age} + ') - id: ' + ${perso.id}"></li>
+            </th:block>
+        </ul>
+    </div>
+</body>
+</html> 
