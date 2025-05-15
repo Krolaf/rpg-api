@@ -58,4 +58,19 @@ public class PersonnageController {
     public void delete(@PathVariable Long id) {
         personnageRepository.deleteById(id);
     }
+
+    @GetMapping("/nains")
+    public List<Personnage> getPersonnagesNains() {
+        // On récupère tous les personnages dont la race est une instance de Nain
+        return personnageRepository.findAll().stream()
+            .filter(p -> p.getRace() != null && p.getRace().getClass().getSimpleName().equals("Nain"))
+            .toList();
+    }
+
+    @GetMapping("/physiques")
+    public List<Personnage> getPersonnagesAvecPouvoirPhysique() {
+        return personnageRepository.findAll().stream()
+            .filter(p -> p.getPouvoir() != null && p.getPouvoir().getClass().getSimpleName().equals("P_Physique"))
+            .toList();
+    }
 } 

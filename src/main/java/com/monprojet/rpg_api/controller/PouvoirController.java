@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.monprojet.rpg_api.model.Pouvoir;
+import com.monprojet.rpg_api.repository.PersonnageRepository;
 import com.monprojet.rpg_api.repository.PouvoirRepository;
 
 @RestController
@@ -20,11 +21,14 @@ import com.monprojet.rpg_api.repository.PouvoirRepository;
 public class PouvoirController {
     @Autowired
     private PouvoirRepository pouvoirRepository;
+    @Autowired
+    private PersonnageRepository personnageRepository;
 
     @GetMapping
     public List<Pouvoir> getAll() {
         return pouvoirRepository.findAll();
     }
+
 
     @GetMapping("/{id}")
     public Pouvoir getById(@PathVariable Long id) {

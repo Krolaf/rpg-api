@@ -26,6 +26,7 @@ public class RaceController {
         return raceRepository.findAll();
     }
 
+
     @GetMapping("/{id}")
     public Race getById(@PathVariable Long id) {
         return raceRepository.findById(id).orElse(null);
