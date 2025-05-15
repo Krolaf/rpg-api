@@ -12,38 +12,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.monprojet.rpg_api.model.Personnage;
-import com.monprojet.rpg_api.repository.PersonnageRepository;
+import com.monprojet.rpg_api.model.Metier;
+import com.monprojet.rpg_api.repository.MetierRepository;
 
 @RestController
-@RequestMapping("/api/personnages")
-public class PersonnageController {
+@RequestMapping("/api/metiers")
+public class MetierController {
     @Autowired
-    private PersonnageRepository personnageRepository;
+    private MetierRepository metierRepository;
 
     @GetMapping
-    public List<Personnage> getAll() {
-        return personnageRepository.findAll();
+    public List<Metier> getAll() {
+        return metierRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Personnage getById(@PathVariable Long id) {
-        return personnageRepository.findById(id).orElse(null);
+    public Metier getById(@PathVariable Long id) {
+        return metierRepository.findById(id).orElse(null);
     }
 
     @PostMapping
-    public Personnage create(@RequestBody Personnage personnage) {
-        return personnageRepository.save(personnage);
+    public Metier create(@RequestBody Metier metier) {
+        return metierRepository.save(metier);
     }
 
     @PutMapping("/{id}")
-    public Personnage update(@PathVariable Long id, @RequestBody Personnage personnage) {
-        personnage.setId(id);
-        return personnageRepository.save(personnage);
+    public Metier update(@PathVariable Long id, @RequestBody Metier metier) {
+        metier.setId(id);
+        return metierRepository.save(metier);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        personnageRepository.deleteById(id);
+        metierRepository.deleteById(id);
     }
 } 

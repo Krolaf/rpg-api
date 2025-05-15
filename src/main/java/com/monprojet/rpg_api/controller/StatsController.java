@@ -12,38 +12,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.monprojet.rpg_api.model.Personnage;
-import com.monprojet.rpg_api.repository.PersonnageRepository;
+import com.monprojet.rpg_api.model.Stats;
+import com.monprojet.rpg_api.repository.StatsRepository;
 
 @RestController
-@RequestMapping("/api/personnages")
-public class PersonnageController {
+@RequestMapping("/api/stats")
+public class StatsController {
     @Autowired
-    private PersonnageRepository personnageRepository;
+    private StatsRepository statsRepository;
 
     @GetMapping
-    public List<Personnage> getAll() {
-        return personnageRepository.findAll();
+    public List<Stats> getAll() {
+        return statsRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Personnage getById(@PathVariable Long id) {
-        return personnageRepository.findById(id).orElse(null);
+    public Stats getById(@PathVariable Long id) {
+        return statsRepository.findById(id).orElse(null);
     }
 
     @PostMapping
-    public Personnage create(@RequestBody Personnage personnage) {
-        return personnageRepository.save(personnage);
+    public Stats create(@RequestBody Stats stats) {
+        return statsRepository.save(stats);
     }
 
     @PutMapping("/{id}")
-    public Personnage update(@PathVariable Long id, @RequestBody Personnage personnage) {
-        personnage.setId(id);
-        return personnageRepository.save(personnage);
+    public Stats update(@PathVariable Long id, @RequestBody Stats stats) {
+        stats.setId(id);
+        return statsRepository.save(stats);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        personnageRepository.deleteById(id);
+        statsRepository.deleteById(id);
     }
 } 
